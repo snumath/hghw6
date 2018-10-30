@@ -1,0 +1,237 @@
+\documentclass{beamer}
+
+\setbeamertemplate{navigation symbols}{}
+
+\usetheme{AnnArbor}
+\usecolortheme{beaver}
+\setbeamercolor{frametitle}{fg=black,bg=white!90!black}
+\setbeamercolor{title}{fg=white,bg=red!90!black}
+
+\setbeamertemplate{enumerate items}[default]
+\setbeamercolor*{enumerate item}{fg=black}
+%\setbeamercolor{titlelike}{parent=structure,bg=cyan}
+
+\usepackage{amsfonts, amssymb, amsmath}
+
+\newcounter{saveenumi}
+\newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+\newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+
+\resetcounteronoverlays{saveenumi}
+
+
+\begin{document}
+\title{Introduction to Mathematical Analysis HW 6}
+\author{Lee Young Jae\\ 2016-11988} 
+\date{\today} 
+
+\frame{\titlepage} 
+
+% \frame{\frametitle{Table of contents}\tableofcontents} 
+
+
+\section{Exercise 1} 
+\frame{\frametitle{Problem 1}
+Let $\Omega$ be a set.
+$\mathcal{A} \subset \mathcal{P}(\Omega)$ is called $\sigma$-\textit{algebra} in $\Omega$, if
+\begin{enumerate}[(i)]
+\item $\Omega \in \mathcal{A}$,
+\item $A \in \mathcal{A}$ implies $A^c := \Omega \backslash A \in \mathcal{A}$,
+\item $A_i \in \mathcal{A}, i \in \mathbb{N}$, implies $\bigcup\limits_{i\in\mathbb{N}} A_i \in \mathcal{A}$.
+\end{enumerate}
+Show the following:
+% \setbeamertemplate{enumerate items}[default]
+\begin{enumerate}[(1)]
+\item
+The $\sigma$-ring $\mathcal{M}(m)$ of 7.1.11, $m$ defined as in (7.11) of the lecture, is a $\sigma$-algebra in $\mathbb{R}^d$.
+
+\item
+Let $\mu$ be a regular and finite set function on $\mathcal{E}$.
+The $\mu$-zero sets are defined as the sets $N \subset \mathbb{R}^d$ for which $\mu^*(N) = 0$.
+Show that the $\mu$-zero sets form a $\sigma$-ring.
+\end{enumerate}
+}
+
+\subsection{Solution of 1-1}
+
+
+\frame{ 
+\frametitle{Solution of 1-1}
+% Let $A, A_n \in \mathcal{M}(m)$ and verify the three conditions of $\sigma$-algebra.
+\begin{enumerate}[(i)]
+\item
+$I_n = (-n,n) \in \mathcal{E} \subset \mathcal{M}_F(\mu)$ for any $n$.
+Therefore, $\mathbb{R} = \bigcup\limits_{n\in\mathbb{N}} I_n \in \mathcal{M}(m)$
+
+\item
+Let $A = \bigcup\limits_{n\in\mathbb{N}}A_n \in \mathcal{M}(m), A_n \in \mathcal{M}_F(m)$.
+Since $I_m \cap A_n \in \mathcal{M}_F(m)$ and $\mu^*(I_m \cap A) < \infty$, $I_m \cap A \in \mathcal{M}_F(m) \Rightarrow I_n \backslash A = I_n \backslash I_n \cap A \in \mathcal{M}_F(\mu)$ since $\mathcal{M}_F(m)$ is a ring.
+Therefore, $A^c = \bigcup\limits_{n=1}^\infty (I_n\backslash A) \in \mathcal{M}(m)$.
+% Then, $A^c = \mathbb{R} \backslash A = $
+%$A^c = \mathbb{R} \backslash A \in \mathcal{M}(m)$ since $\mathcal{M}(m)$ is a $\sigma$-ring.
+
+\item
+%$\bigcup\limits_{n\in\mathbb{N}} A_n \in \mathcal{M}(m)$ since $\mathcal{M}(m)$ is a $\sigma$-ring.
+Let $A_n = \bigcup\limits_{k=1}^\infty A_{nk}, A_{nk} \in \mathcal{M}_F(m)$ for each $n$.
+Then, $\bigcup\limits_{n\in\mathbb{N}} A_n = \bigcup\limits_{(n,k)\in\mathbb{N}\times\mathbb{N}} A_{nk} \in \mathcal{M}(m)$.
+
+\end{enumerate}
+}
+
+\subsection{Solution of 1-2}
+\frame{ 
+\frametitle{Solution of 1-2}
+\begin{enumerate}
+\item 
+Let $A, B$ be $\mu$-zero sets.
+For any $\epsilon > 0$ there exists $A_n, B_n \in \mathcal{E}$ such that
+$$\sum_{n=1}^\infty \mu(A_n), \sum_{n=1}^\infty \mu(B_n) < \epsilon / 2 \text{ and } \bigcup_{n=1}^\infty A_n \subset A, \bigcup_{n=1}^\infty B_n \subset B$$ so that
+$$\sum_{n=1}^\infty \mu(A_n \cup B_n) < \epsilon \text{ and } \bigcup_{n=1}^\infty (A_n \cup B_n) \subset (A \cup B).$$
+Therefore, $\mu^*(A \cup B) < \epsilon$ for any $\epsilon > 0$, i.e., $\mu^*(A \cup B) = 0$.
+
+\item
+Let $A, B$ be $\mu$-zero sets.
+Then, $\mu^*(A\backslash B) \leq \mu^*(A) = 0$ since every $(A_n) \subset \mathcal{E}$ such that $\bigcup\limits_{n=1}^\infty A_n \supset A$ satisfies $A_n \supset A\backslash B$.\\
+Therefore, $A\backslash B$ is also $\mu$-zero set.
+\seti
+\end{enumerate}
+}
+
+\frame{
+\begin{enumerate}
+\conti
+\item
+Let $A_n$ be $\mu$-zero sets, and let $(A_{nm})_{m\geq 0} \in \mathcal{E}$ satisfies
+$$\sum_{m=1}^\infty \mu(A_{nm}) < \epsilon/2^n \text{ and }\bigcup_{m=1}^\infty A_{nm} \supset A_n$$
+for each $n$.
+Then, similar to 1,
+$$\sum_{n,m =1}^{\infty}\mu(A_{nm}) < \epsilon \text{ and } \bigcup_{n,m =1}^{\infty} A_{nm} \subset A.$$
+Therefore, $\mu^*(A) < \epsilon$ for any $\epsilon > 0$, i.e., $\mu^*(A) = 0$.
+\end{enumerate}
+By 1 and 2, $\mu$-zero sets form a ring and by 3 it form a $\sigma$-ring.
+}
+
+
+
+\section{Exercise 2} 
+\frame{\frametitle{Problem 2}
+Let $\Omega$ be a set.
+\begin{enumerate}[(i)]
+\item
+Let $I$ be an arbitrary index set (not necessarily countable) and for any $i \in I$, let $\mathcal{A}_i$ be a $\sigma$-algebra in $\Omega$. Show that
+$$
+\bigcap_{i\in I} \mathcal{A}_i := \{ A \subset \Omega\ |\ A \in \mathcal{A}_i,\ \forall i \in I \}
+$$
+
+\item
+Let $\phi \neq \mathcal{A}_0 \subset \mathcal{P}(\Omega)$ be a collection of subsets of $\Omega$.
+Then show that
+$$
+\sigma(\mathcal{A}_0) := \bigcup\limits_{\substack{ \mathcal{B} \ \sigma-\text{algebra} \\ \text{in } \Omega,\ \mathcal{A}_0 \subset \mathcal{B}}}\mathcal{B}
+$$
+is well defined and is the smallest $\sigma$-algebra in $\Omega$ containing $\mathcal{A}_0$.
+($\sigma(\mathcal{A}_0)$ is called the $\sigma$-algebra generated by $\mathcal{A}_0$).
+\end{enumerate}
+}
+
+\subsection{Solution of 2-1}
+\frame{
+\frametitle{Solution of 2-1}
+Check three conditions in Exercise 1.
+\begin{enumerate}[(i)]
+\item Since $\Omega \in \mathcal{A}_i$ for each $i \in I$, $\Omega \in \bigcap\limits_{i\in I} \mathcal{A}_i$.
+
+\item
+If $A \in \bigcap\limits_{i\in I}\mathcal{A}_i$, then $A^c \in A_i$ for each $i \in I$.
+Therefore, $A^c \in \bigcap\limits_{i\in I} \mathcal{A}_i$
+
+\item
+If $A_1, A_2, \cdots \in \bigcap_{i\in I} \mathcal{A}_i$ for each $i\in I$, then
+$\bigcup\limits_{n=1}^\infty A_n \in \mathcal{A}_i$ for each $i \in I$.
+Therefore, $\bigcup\limits_{n=1}^\infty A_n \in \bigcap\limits_{i\in I} \mathcal{A}_i$.
+\end{enumerate}
+Therefore, $\bigcap\limits_{i\in I} \mathcal{A}_i$ is again a $\sigma$-algebra in $\Omega$.
+}
+
+\subsection{Solution of 2-2}
+\frame{
+\frametitle{Solution of 2-2}
+\begin{enumerate}
+\item
+We've showed that intersection of $\sigma$-algebras are also $\sigma$-algebra.
+To show that it is well-defined, we only have to show that there is at least one $\mathcal{B}$ such that $\mathcal{B}$ is a $\sigma$-algebra in $\Omega$ and $\mathcal{A}_0 \subset \mathcal{B}$.
+Such $\mathcal{B}$ always exists since $\mathcal{B} = \mathcal{P}(\Omega)$ satisfies the above.
+
+\item Let $\sigma(\mathcal{A}_0) \not\subset \mathfrak{M}$ but $\mathfrak{M}$ is a $\sigma$-algebra containing $\Omega$.
+Then, by definition of $\sigma(\mathcal{A}_0)$, $\sigma(\mathcal{A}_0) \subset \mathfrak{M}$. ($\Rightarrow\!\Leftarrow$)
+Therefore, $\sigma(\mathcal{A}_0)$ is minimal $\sigma$-algebra containing $\mathcal{A}_0$.
+\end{enumerate}
+}
+
+\section{Exercise 3} 
+\frame{\frametitle{Problem 3}
+Let $\phi$ be a positive set function on a ring $\mathcal{R}$.
+Suppose that $\phi$ is countably additive.
+Show that $\phi$ is continuous from above:
+$$
+A, A_n \in \mathcal{R}, \phi(A_n) < \infty, n \in \mathbb{N} \text{ and } A_n \searrow A \Rightarrow \lim_{n\rightarrow\infty} \phi(A_n) = \phi(A)
+$$
+\textit{Notation:} For sets $A, A_1, A_2, A_3, \cdots$ the notation $A_n \searrow A$ means that $A_1 \supset A_2 \supset A_3 \cdots$ and $\cup_{n\in\mathbb{N}} A_n = A$.
+}
+
+\subsection{Solution of 3}
+\frame{
+\frametitle{Solution of 3}
+Let $A, A_n \in \mathcal{R}, \phi(A_n) < \infty, n \in \mathbb{N}$ and $A_n \searrow A$.
+Let $B_n = A_n - A_{n+1}$.
+Then, $A, B_1, B_2 \cdots$ are disjoint so that $A_1\backslash A = \bigcup\limits_{n=1}^\infty B_n$ and
+% $$ \phi(A_1) = \phi\left(\bigcup_{n=0}^\infty B_n\right) = \sum_{n=0}^\infty \phi(B_n) = \sum_{n=1}^\infty \phi(B_n) + \lim_{n\rightarrow\infty}\phi(A_{n}). $$
+% and
+$$
+\phi(A_1\backslash A) = \phi\left(\bigcup_{n=1}^\infty B_n\right) = \sum_{n=1}^\infty \phi(B_n) = \sum_{n=1}^\infty \phi(B_n).
+$$
+Moreover, for each $m \in \mathbb{N}$ it is true that
+$$
+\phi(A_1\backslash A) = \phi\left(\bigcup_{n=1}^{m-1}B_n \cup (A_m\backslash A)\right) = \sum_{n=1}^{m-1} \phi(B_n) + \phi(A_m\backslash A).
+$$
+Take limits both sides to get $\lim\limits_{m\rightarrow\infty} \phi(A_m\backslash A) = \lim\limits_{m\rightarrow\infty} \phi(A_m) - \phi(A) = 0$.
+Therefore, $\lim\limits_{n\rightarrow\infty}\phi(A_n) = \phi(A)$.
+
+}
+
+\section{Exercise 4}
+\frame{\frametitle{Problem 4}
+Complete the proof of Proposition 7.1.17 of the lecture notes.
+}
+
+\subsection{Solution of 4}
+\frame{
+\frametitle{Solution of 4}
+It only remains to show: if $A \in \mathcal{M}(\mu), \mu(A) = \infty,$ and $\epsilon > 0$, then there exists $G \supset A$, $G$ open with $\mu(G\backslash A)<\epsilon$.
+
+% Since $S \in \mathcal{M}_F(\mu) \Rightarrow \mu^*(S) < \infty$.
+
+Let $A = \bigcup\limits_{n=1}^\infty A_n, A_n \in \mathcal{M}_F(\mu)$.
+Then, $\mu^*(A_n) = \mu(A_n) < \infty$ for each $n$.
+
+% Let $A = \bigcup\limits_{n=1}^\infty A_n, A_n \in \mathcal{M}_F(\mu)$ and $\mu(A_n) < \infty$ for each $A_n$.
+Therefore for each $n$ there exists $A_{nm} \in \mathcal{E}, m \geq 1$ with $\bigcup\limits_{m\geq 1} A_{nm} \supset A_m$ and
+$$
+\mu^*(A_{n}) + \frac{\epsilon}{2^{n+1}} > \sum_{m\geq 1} \mu(A_{nm}).
+$$
+}
+\frame{
+Following the proof of the lecture note, since $\mu(A_n) < \infty$,
+%$$ \mu(\bigcup_{m\geq 1} A_{nm}) \leq \sum_{m\geq 1}\mu(A_{nm}) < \mu^*(A_{n}) +\epsilon/2^n $$
+ $$\mu\left( \bigcup_{m\geq 1}A_{nm}\backslash A_n \right) < \epsilon/2^n
+ \text{ and therefore } \mu\left(\bigcup_{n,m\geq 1} A_{nm} \backslash A\right) < \epsilon,$$
+since
+$$
+\sum_{n=1}^{\infty}\mu\left(\bigcup_{m\geq 1}A_{nm}\right) \geq \mu\left(\bigcup_{m\geq 1}A_{nm}\right).
+$$
+We may hence get $G := \bigcup\limits_{n,m\geq 1}A_{nm}$.
+}
+
+\end{document}
+
+
